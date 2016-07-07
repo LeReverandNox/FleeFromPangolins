@@ -1,9 +1,14 @@
 /*jslint browser:true this*/
 /*global window console Phaser*/
-(function () {
+
+(function (global) {
     "use strict";
-    var FFP = {};
+    var FFP = global.FFP || {};
 
     FFP.game = new Phaser.Game(773, 435, Phaser.CANVAS, "gameHolder");
 
-}());
+    FFP.game.state.add("Boot", FFP.Boot);
+    FFP.game.state.start("Boot");
+
+    global.FFP = FFP;
+}(window));
