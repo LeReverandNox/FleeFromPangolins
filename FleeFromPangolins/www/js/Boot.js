@@ -4,7 +4,6 @@
 (function (global) {
     "use strict";
 
-    console.log("Boot");
     var FFP = global.FFP || {};
 
     FFP.Boot = function () {
@@ -12,10 +11,18 @@
     };
 
     FFP.Boot.prototype.preload = function () {
-        console.log("Ca preload");
+        this.load.image("preloadbar", "assets/images/preloader-bar.png");
     };
     FFP.Boot.prototype.create = function () {
-        console.log("Ca create");
+        this.game.stage.backgroundColor = "#ff3fdf";
+
+        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        this.scale.pageAlignHorizontally = true;
+        this.scale.pageAlignVertically = true;
+
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
+        this.state.start("Preload");
     };
 
     global.FFP = FFP;
