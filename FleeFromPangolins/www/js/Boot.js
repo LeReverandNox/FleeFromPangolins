@@ -13,6 +13,7 @@
     FFP.Boot.prototype.preload = function () {
         this.load.image("preloadbar", "assets/images/preloader-bar.png");
     };
+
     FFP.Boot.prototype.create = function () {
         this.game.stage.backgroundColor = "#ff3fdf";
 

@@ -8,6 +8,7 @@
     FFP.game = new Phaser.Game(773, 435, Phaser.CANVAS, "gameHolder");
 
     FFP.game.state.add("Boot", FFP.Boot);
+    FFP.game.state.add("Preload", FFP.Preload);
     FFP.game.state.start("Boot");
 
     global.FFP = FFP;
