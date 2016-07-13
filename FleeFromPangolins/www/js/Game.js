@@ -36,6 +36,11 @@
 
         // L'herbe est au premier plan
         this.game.world.bringToTop(this.grass);
+
+        // On active le moteur physique pour le joueur et le sol
+        this.game.physics.arcade.enable(this.player);
+        this.game.physics.arcade.enable(this.dracula);
+        this.game.physics.arcade.enable(this.ground);
     };
 
     FFP.Game.prototype.update = function () {
