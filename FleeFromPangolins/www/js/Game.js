@@ -34,6 +34,8 @@
         this.dracula.animations.add("hover");
         this.dracula.fixedToCamera = true;
 
+        // L'herbe est au premier plan
+        this.game.world.bringToTop(this.grass);
     };
 
     FFP.Game.prototype.update = function () {
