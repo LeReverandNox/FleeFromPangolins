@@ -41,6 +41,8 @@
         this.game.physics.arcade.enable(this.player);
         this.game.physics.arcade.enable(this.dracula);
         this.game.physics.arcade.enable(this.ground);
+        // Gravité du joueur
+        this.player.body.gravity.y = 1000;
     };
 
     FFP.Game.prototype.update = function () {
