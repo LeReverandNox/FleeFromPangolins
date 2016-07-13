@@ -63,7 +63,7 @@
         }
     };
 
-    FFP.Game.prototype.update = function () {
+    FFP.Game.prototype.playerHitTheGround = function () {
         // Si on touche le sol (donc quand on retombe), on cancel l'animation de saut et on relance l'animation de walk. Appel ignoré sur l'action est déjà en cour
         if (this.player.body.touching.down) {
             this.player.animations.stop("jump");
