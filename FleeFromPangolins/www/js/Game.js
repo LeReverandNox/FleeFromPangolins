@@ -50,6 +50,10 @@
 
         // On fait marcher le sprite
         this.dracula.animations.play('hover', 3, true);
+
+        // On capture les inputs clavier des touches fléchées et les tap
+        this.cursors = this.game.input.keyboard.createCursorKeys();
+        this.game.input.onTap.add(this.jumpUp, this);
     };
 
     FFP.Game.prototype.update = function () {
