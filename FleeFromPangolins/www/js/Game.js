@@ -28,6 +28,12 @@
         this.player.animations.add("walk", [0, 1, 2, 3, 4, 5]);
         this.player.animations.add("jump", [6]);
 
+        // On créer Dracula et son animation, et on le fixe par rapport a la camera
+        this.dracula = this.game.add.sprite(-50, this.game.height - 155, "dracula");
+        this.dracula.scale.setTo(1.5);
+        this.dracula.animations.add("hover");
+        this.dracula.fixedToCamera = true;
+
     };
 
     FFP.Game.prototype.update = function () {
