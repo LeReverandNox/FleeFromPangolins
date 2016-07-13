@@ -48,6 +48,8 @@
         this.ground.body.immovable = true;
         this.ground.body.allowGravity = false;
 
+        // On fait marcher le sprite
+        this.dracula.animations.play('hover', 3, true);
     };
 
     FFP.Game.prototype.update = function () {
