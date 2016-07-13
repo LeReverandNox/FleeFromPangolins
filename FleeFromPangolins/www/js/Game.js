@@ -84,8 +84,12 @@
 
         this.game.camera.focusOnXY(this.player.x + 125, this.player.y);
 
+        this.game.world.wrap(this.player, -(this.game.width - 125), false, true, false);
+    };
+
     FFP.Game.prototype.render = function () {
         this.game.debug.text(this.game.time.fps || "--", 20, 70, "#00ff00", "40px Courier");
+
     };
 
     global.FFP = FFP;
