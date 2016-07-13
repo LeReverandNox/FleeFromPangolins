@@ -64,6 +64,11 @@
     };
 
     FFP.Game.prototype.update = function () {
+        // Si on touche le sol (donc quand on retombe), on cancel l'animation de saut et on relance l'animation de walk. Appel ignoré sur l'action est déjà en cour
+        if (this.player.body.touching.down) {
+            this.player.animations.stop("jump");
+            this.player.animations.play('walk', 6, true);
+        }
     };
 
     FFP.Game.prototype.render = function () {
