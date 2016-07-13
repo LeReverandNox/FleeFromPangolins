@@ -21,6 +21,13 @@
         // On créer le sol avec l'image ground et l'herbe avec l'image grass
         this.ground = this.add.tileSprite(0, this.game.height - 32, this.game.world.width, 32, "ground");
         this.grass = this.add.tileSprite(0, this.game.height - 44, this.game.world.width, 12, 'grass');
+
+
+        // On créer le joueur a partir du sprite de Simon et on lui ajoute son amimation de marche
+        this.player = this.game.add.sprite(0, this.game.height - 100, "simon");
+        this.player.animations.add("walk", [0, 1, 2, 3, 4, 5]);
+        this.player.animations.add("jump", [6]);
+
     };
 
     FFP.Game.prototype.update = function () {
