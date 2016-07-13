@@ -71,6 +71,9 @@
         }
     };
 
+    FFP.Game.prototype.update = function () {
+        // On vérifie la collision entre le joueur et le sol
+        this.game.physics.arcade.collide(this.player, this.ground, this.playerHitTheGround, null, this);
     FFP.Game.prototype.render = function () {
         this.game.debug.text(this.game.time.fps || "--", 20, 70, "#00ff00", "40px Courier");
     };
