@@ -77,6 +77,11 @@
         // On fait se deplacer le joueur automatiquement
         this.player.body.velocity.x = 125;
 
+        // Si on appuie sur Up, on saute !
+        if (this.cursors.up.isDown) {
+            this.jumpUp();
+        }
+
     FFP.Game.prototype.render = function () {
         this.game.debug.text(this.game.time.fps || "--", 20, 70, "#00ff00", "40px Courier");
     };
