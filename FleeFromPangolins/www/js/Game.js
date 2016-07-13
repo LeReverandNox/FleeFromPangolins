@@ -74,6 +74,9 @@
     FFP.Game.prototype.update = function () {
         // On vérifie la collision entre le joueur et le sol
         this.game.physics.arcade.collide(this.player, this.ground, this.playerHitTheGround, null, this);
+        // On fait se deplacer le joueur automatiquement
+        this.player.body.velocity.x = 125;
+
     FFP.Game.prototype.render = function () {
         this.game.debug.text(this.game.time.fps || "--", 20, 70, "#00ff00", "40px Courier");
     };
