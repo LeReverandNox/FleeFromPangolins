@@ -43,6 +43,11 @@
         this.game.physics.arcade.enable(this.ground);
         // Gravité du joueur
         this.player.body.gravity.y = 1000;
+
+        // Le joueur ne peut pas passer a traver le sol
+        this.ground.body.immovable = true;
+        this.ground.body.allowGravity = false;
+
     };
 
     FFP.Game.prototype.update = function () {
