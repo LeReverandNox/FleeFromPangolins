@@ -54,6 +54,12 @@
         // On capture les inputs clavier des touches fléchées et les tap
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.game.input.onTap.add(this.jumpUp, this);
+
+        //  The score
+        this.score = 0;
+        this.scoreString = 'Score : ';
+        this.scoreText = this.game.add.text(10, 10, this.scoreString + this.score, { font: '20px Arial', fill: '#ffffff' });
+        this.scoreText.fixedToCamera = true;
     };
 
     FFP.Game.prototype.jumpUp = function () {
@@ -89,7 +95,6 @@
 
     FFP.Game.prototype.render = function () {
         this.game.debug.text(this.game.time.fps || "--", 20, 70, "#00ff00", "40px Courier");
-
     };
 
     global.FFP = FFP;
