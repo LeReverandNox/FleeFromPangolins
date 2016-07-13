@@ -15,7 +15,7 @@
     };
 
     FFP.Boot.prototype.create = function () {
-        this.game.stage.backgroundColor = "#ff3fdf";
+        this.game.stage.backgroundColor = "#001413";
 
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.scale.pageAlignHorizontally = true;
