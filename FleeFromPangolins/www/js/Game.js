@@ -56,6 +56,13 @@
         this.game.input.onTap.add(this.jumpUp, this);
     };
 
+    FFP.Game.prototype.jumpUp = function () {
+        if (this.player.body.touching.down) {
+            this.player.body.velocity.y -= 450;
+            this.player.animations.play("jump", 1);
+        }
+    };
+
     FFP.Game.prototype.update = function () {
     };
 
