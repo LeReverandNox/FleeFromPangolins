@@ -73,8 +73,10 @@
         this.platforms = this.game.add.physicsGroup();
 
         this.gameOver = false;
-        this.timeUntilSpawn = Math.random() * 1000 + 1000;
-        this.lastSpawnTime = this.game.time.time;
+        this.timeUntilSpawnGhoul = Math.random() * 1000 + 1000;
+        this.lastSpawnTimeGhoul = this.game.time.time;
+        this.timeUntilSpawnPlatorm = Math.random() * 1000 + 1000;
+        this.lastSpawnTimePlatform = this.game.time.time;
 
         this.mainTheme = this.game.add.audio('main-theme');
         this.mainTheme.play();
@@ -104,9 +106,9 @@
 
     FFP.Game.prototype.tryToSpawnGhoul = function () {
         var currentTime = this.game.time.time;
-        if (currentTime - this.lastSpawnTime > this.timeUntilSpawn) {
-            this.timeUntilSpawn = Math.random() * 1000 + 1000;
-            this.lastSpawnTime = currentTime;
+        if (currentTime - this.lastSpawnTimeGhoul > this.timeUntilSpawnGhoul) {
+            this.timeUntilSpawnGhoul = Math.random() * 1000 + 1000;
+            this.lastSpawnTimeGhoul = currentTime;
 
             var maybe = Math.floor(Math.random() * 100);
             if (maybe < 60) {
