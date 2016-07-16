@@ -85,6 +85,15 @@
         }
     };
 
+    FFP.Game.prototype.playerCollectBall = function (ignore, ball) {
+        ball.destroy();
+        this.updateScore(10);
+    };
+    FFP.Game.prototype.draculaCollectBall = function (ignore, ball) {
+        ball.destroy();
+        this.updateScore(-10);
+    };
+
     FFP.Game.prototype.tryToSpawnGhoul = function () {
         var currentTime = this.game.time.time;
         if (currentTime - this.lastSpawnTime > this.timeUntilSpawn) {
@@ -165,6 +174,11 @@
 
         // On vérifie la collison entre le joueur et les ghouls
         this.game.physics.arcade.collide(this.player, this.ghouls, this.hitAGhoul, null, this);
+
+        // On vérifie le ramassage des balls par le joueur
+        this.game.physics.arcade.overlap(this.player, this.balls, this.playerCollectBall, null, this);
+        // On vérifie le ramassage des balls par le dracula ! hahaha
+        this.game.physics.arcade.overlap(this.dracula, this.balls, this.draculaCollectBall, null, this);
 
         // Si on appuie sur Up, on saute !
         if (this.cursors.up.isDown) {
