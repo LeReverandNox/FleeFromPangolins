@@ -83,6 +83,8 @@
         this.timeUntilSpawnPlatorm = Math.random() * 1000 + 1000;
         this.lastSpawnTimePlatform = this.game.time.time;
 
+        this.pickupSound = this.game.add.audio('pickup');
+
         this.mainTheme = this.game.add.audio('main-theme');
         this.mainTheme.play();
 
@@ -148,6 +150,7 @@
     };
 
     FFP.Game.prototype.playerCollectBall = function (ignore, ball) {
+        this.pickupSound.play();
         ball.destroy();
         this.updateScore(10);
     };
