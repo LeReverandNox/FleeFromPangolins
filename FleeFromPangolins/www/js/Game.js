@@ -60,6 +60,8 @@
         this.scoreString = 'Score : ';
         this.scoreText = this.game.add.text(10, 10, this.scoreString + this.score, {font: '20px Arial', fill: '#ffffff'});
         this.scoreText.fixedToCamera = true;
+        this.mainTheme = this.game.add.audio('main-theme');
+        this.mainTheme.play();
     };
 
     FFP.Game.prototype.jumpUp = function () {
