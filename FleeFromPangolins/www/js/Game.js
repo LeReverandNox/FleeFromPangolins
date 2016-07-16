@@ -133,6 +133,12 @@
         console.log("GAME OVER");
         this.player.body.velocity.x = 0;
         this.player.animations.stop();
+        this.restart();
+    };
+
+    FFP.Game.prototype.restart = function () {
+        this.mainTheme.stop();
+        this.game.state.start(this.game.state.current);
     };
 
     FFP.Game.prototype.update = function () {
