@@ -82,10 +82,24 @@
         this.mainTheme.play();
     };
 
-    FFP.Game.prototype.spawnBall = function () {
+    FFP.Game.prototype.spawnPlatform = function () {
         var x = this.player.position.x + this.game.width + 50;
 
         if (x < this.game.world.width - this.game.width) {
+            var maybe = Math.floor(Math.random() * 100);
+            var y;
+            if (maybe < 50 && this.lastSpawnedPlatform && this.lastSpawnedPlatform.position.y === (this.game.height - 110)) {
+                y = 190;
+            } else {
+                y = 110;
+            }
+            var platform = this.platforms.create(x, this.game.height - y, 'platform');
+            platform.body.allowGravity = false;
+            platform.body.immovable = true;
+            this.lastSpawnedPlatform = platform;
+        }
+    };
+
     FFP.Game.prototype.tryToSpawnPlatform = function () {
         var currentTime = this.game.time.time;
         if (currentTime - this.lastSpawnTimePlatform > this.timeUntilSpawnPlatorm) {
