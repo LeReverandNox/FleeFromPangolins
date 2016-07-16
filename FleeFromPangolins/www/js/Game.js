@@ -65,6 +65,8 @@
     FFP.Game.prototype.jumpUp = function () {
         if (this.player.body.touching.down) {
             this.player.body.velocity.y -= 450;
+            this.player.body.gravity.y += 50;
+            this.player.body.velocity.x += 50;
             this.player.animations.play("jump", 1);
         }
     };
@@ -74,6 +76,10 @@
         if (this.player.body.touching.down) {
             this.player.animations.stop("jump");
             this.player.animations.play('walk', 6, true);
+            this.player.body.gravity.y = 1000;
+
+            // On fait se deplacer le joueur automatiquement
+            this.player.body.velocity.x = 160;
         }
     };
 
