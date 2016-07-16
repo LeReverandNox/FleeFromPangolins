@@ -88,7 +88,38 @@
         this.mainTheme = this.game.add.audio('main-theme');
         this.mainTheme.play();
 
+        // Compteur pour le double jump
         this.jumpCount = 0;
+
+        // Menu de pause
+        this.pauseButton = this.game.add.button(this.game.width - 55, 5, 'pause', this.pause, this);
+        this.pauseButton.fixedToCamera = true;
+        // this.game.input.onDown.add(this.unpause, this);
+    };
+
+    FFP.Game.prototype.pause = function () {
+        this.pauseText = this.game.add.text(this.game.camera.x, 150, "PAUSE", {font: '50px Arial', fill: '#ffffff'});
+        this.pauseText.anchor.setTo(-1, 0.5);
+        this.game.paused = true;
+    };
+
+    FFP.Game.prototype.unpause = function () {
+        if (this.game.paused) {
+            this.pauseText.destroy();
+            this.game.paused = false;
+        }
+    };
+
+    FFP.Game.prototype.tapOnScreen = function (event) {
+        var x1 = this.game.width - this.pauseButton.width;
+        var x2 = this.game.width;
+        var y1 = 0;
+        var y2 = 0 + (this.pauseButton.height + 5);
+        if (event.x > x1 && event.x < x2 && event.y > y1 && event.y < y2) {
+            this.unpause();
+        } else if (this.game.paused === false) {
+            this.jumpUp();
+        }
     };
 
     FFP.Game.prototype.loadBestScore = function () {
