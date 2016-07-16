@@ -58,8 +58,13 @@
         //  The score
         this.score = 0;
         this.scoreString = 'Score : ';
-        this.scoreText = this.game.add.text(10, 10, this.scoreString + this.score, {font: '20px Arial', fill: '#ffffff'});
+        this.scoreText = this.game.add.text(10, 35, this.scoreString + this.score, {font: '20px Arial', fill: '#ffffff'});
         this.scoreText.fixedToCamera = true;
+
+        this.bestScore = this.loadBestScore();
+        this.bestScoreString = 'Best Score : ';
+        this.bestScoreText = this.game.add.text(10, 10, this.bestScoreString + this.bestScore, {font: '20px Arial', fill: '#ffffff'});
+        this.bestScoreText.fixedToCamera = true;
 
         // On créer un groupe pour les ghouls
         this.ghouls = this.game.add.group();
@@ -80,6 +85,14 @@
 
         this.mainTheme = this.game.add.audio('main-theme');
         this.mainTheme.play();
+    };
+
+    FFP.Game.prototype.loadBestScore = function () {
+        return parseInt(localStorage.getItem("FFP_Best_Score")) || 0;
+    };
+
+    FFP.Game.prototype.saveBestScore = function (score) {
+        localStorage.setItem("FFP_Best_Score", score);
     };
 
     FFP.Game.prototype.spawnPlatform = function () {
@@ -144,6 +157,12 @@
     FFP.Game.prototype.updateScore = function (value) {
         this.score += parseInt(value);
         this.scoreText.text = this.scoreString + this.score;
+
+        if (this.score > this.bestScore) {
+            this.saveBestScore(this.score);
+            this.bestScore = this.score;
+            this.bestScoreText.text = this.bestScoreString + this.bestScore;
+        }
     };
 
     FFP.Game.prototype.tryToSpawnGhoul = function () {
