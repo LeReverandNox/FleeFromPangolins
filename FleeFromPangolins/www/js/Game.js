@@ -98,6 +98,16 @@
         this.gameOver = true;
     };
 
+    FFP.Game.prototype.checkGhoulsToClean = function () {
+        if (this.ghouls.countLiving()) {
+            this.ghouls.forEachExists(function (ghoul) {
+                if (ghoul.worldPosition.x < 0) {
+                    this.ghouls.remove(ghoul);
+                }
+            }, this);
+        }
+    };
+
     FFP.Game.prototype.jumpUp = function () {
         if (this.player.body.touching.down) {
             this.player.body.velocity.y -= 450;
@@ -148,6 +158,7 @@
         this.game.world.wrap(this.player, -(this.game.width - 125), false, true, false);
 
         this.tryToSpawnGhoul();
+        this.checkGhoulsToClean();
     };
 
     FFP.Game.prototype.render = function () {
