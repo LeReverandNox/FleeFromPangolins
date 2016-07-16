@@ -94,6 +94,11 @@
         this.updateScore(-10);
     };
 
+    FFP.Game.prototype.updateScore = function (value) {
+        this.score += parseInt(value);
+        this.scoreText.text = this.scoreString + this.score;
+    };
+
     FFP.Game.prototype.tryToSpawnGhoul = function () {
         var currentTime = this.game.time.time;
         if (currentTime - this.lastSpawnTime > this.timeUntilSpawn) {
