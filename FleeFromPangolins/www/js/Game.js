@@ -246,6 +246,7 @@
         this.tryToSpawnGhoul();
         this.tryToSpawnPlatform();
         this.checkGhoulsToClean();
+        this.checkPlatformsToClean();
     };
 
     FFP.Game.prototype.render = function () {
