@@ -65,6 +65,7 @@
         this.ghouls = this.game.add.group();
         this.ghouls.enableBody = true;
 
+        this.gameOver = false;
         this.mainTheme = this.game.add.audio('main-theme');
         this.mainTheme.play();
     };
