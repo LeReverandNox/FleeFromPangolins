@@ -80,6 +80,11 @@
             ghoul.body.immovable = true;
         }
     };
+
+    FFP.Game.prototype.hitAGhoul = function () {
+        this.gameOver = true;
+    };
+
     FFP.Game.prototype.jumpUp = function () {
         if (this.player.body.touching.down) {
             this.player.body.velocity.y -= 450;
@@ -101,10 +106,21 @@
         }
     };
 
+    FFP.Game.prototype.gameIsOver = function () {
+        console.log("GAME OVER");
+        this.player.body.velocity.x = 0;
+        this.player.animations.stop();
+    };
+
     FFP.Game.prototype.update = function () {
+
         // On vérifie la collision entre le joueur et le sol
         this.game.physics.arcade.collide(this.player, this.ground, this.playerHitTheGround, null, this);
 
+        if (this.gameOver) {
+            this.gameIsOver();
+            return;
+        }
 
         // On vérifie la collison entre le joueur et les ghouls
         this.game.physics.arcade.collide(this.player, this.ghouls, this.hitAGhoul, null, this);
