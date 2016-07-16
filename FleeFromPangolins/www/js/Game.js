@@ -100,6 +100,10 @@
         }
     };
 
+    FFP.Game.prototype.playerOnAPlatform = function () {
+        this.playerHitTheGround();
+    };
+
     FFP.Game.prototype.checkPlatformsToClean = function () {
         if (this.platforms.countLiving()) {
             this.platforms.forEachExists(function (platform) {
@@ -228,6 +232,9 @@
 
         // On vérifie la collison entre le joueur et les ghouls
         this.game.physics.arcade.collide(this.player, this.ghouls, this.hitAGhoul, null, this);
+
+        // On vérifie la collison entre le joueur et les platforms
+        this.game.physics.arcade.collide(this.player, this.platforms, this.playerOnAPlatform, null, this);
 
         // On vérifie le ramassage des balls par le joueur
         this.game.physics.arcade.overlap(this.player, this.balls, this.playerCollectBall, null, this);
