@@ -22,6 +22,7 @@
         this.load.spritesheet('ghoul', 'assets/images/ghoul.png', 28, 55, 2);
         this.load.image('ground', 'assets/images/ground.png');
         this.load.image('grass', 'assets/images/grass.png');
+        this.load.audio('main-theme', 'assets/sounds/main-theme.mp3');
     };
 
     FFP.Preload.prototype.create = function () {
