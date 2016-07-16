@@ -104,8 +104,10 @@
     FFP.Game.prototype.update = function () {
         // On vérifie la collision entre le joueur et le sol
         this.game.physics.arcade.collide(this.player, this.ground, this.playerHitTheGround, null, this);
-        // On fait se deplacer le joueur automatiquement
-        this.player.body.velocity.x = 125;
+
+
+        // On vérifie la collison entre le joueur et les ghouls
+        this.game.physics.arcade.collide(this.player, this.ghouls, this.hitAGhoul, null, this);
 
         // Si on appuie sur Up, on saute !
         if (this.cursors.up.isDown) {
