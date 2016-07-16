@@ -35,7 +35,7 @@
         this.dracula.fixedToCamera = true;
 
         // L'herbe est au premier plan
-        this.game.world.bringToTop(this.grass);
+        // this.game.world.bringToTop(this.grass);
 
         // On active le moteur physique pour le joueur et le sol
         this.game.physics.arcade.enable(this.player);
@@ -69,16 +69,63 @@
         this.balls = this.game.add.group();
         this.balls.enableBody = true;
 
+        // On créer un groupe physic pour les platfoms
+        this.platforms = this.game.add.physicsGroup();
+
         this.gameOver = false;
-        this.timeUntilSpawn = Math.random() * 1000 + 1000;
-        this.lastSpawnTime = this.game.time.time;
+        this.timeUntilSpawnGhoul = Math.random() * 1000 + 1000;
+        this.lastSpawnTimeGhoul = this.game.time.time;
+        this.timeUntilSpawnPlatorm = Math.random() * 1000 + 1000;
+        this.lastSpawnTimePlatform = this.game.time.time;
 
         this.mainTheme = this.game.add.audio('main-theme');
         this.mainTheme.play();
     };
 
-    FFP.Game.prototype.spawnBall = function () {
+    FFP.Game.prototype.spawnPlatform = function () {
         var x = this.player.position.x + this.game.width + 50;
+
+        if (x < this.game.world.width - this.game.width) {
+            var maybe = Math.floor(Math.random() * 100);
+            var y;
+            if (maybe < 50 && this.lastSpawnedPlatform && this.lastSpawnedPlatform.position.y === (this.game.height - 110)) {
+                y = 190;
+            } else {
+                y = 110;
+            }
+            var platform = this.platforms.create(x, this.game.height - y, 'platform');
+            platform.body.allowGravity = false;
+            platform.body.immovable = true;
+            this.lastSpawnedPlatform = platform;
+        }
+    };
+
+    FFP.Game.prototype.playerOnAPlatform = function () {
+        this.playerHitTheGround();
+    };
+
+    FFP.Game.prototype.checkPlatformsToClean = function () {
+        if (this.platforms.countLiving()) {
+            this.platforms.forEachExists(function (platform) {
+                if (platform.worldPosition.x < -64) {
+                    this.platforms.remove(platform);
+                }
+            }, this);
+        }
+    };
+
+    FFP.Game.prototype.tryToSpawnPlatform = function () {
+        var currentTime = this.game.time.time;
+        if (currentTime - this.lastSpawnTimePlatform > this.timeUntilSpawnPlatorm) {
+            this.timeUntilSpawnPlatorm = Math.random() * 1000 + 1000;
+            this.lastSpawnTimePlatform = currentTime;
+
+            this.spawnPlatform();
+        }
+    };
+
+    FFP.Game.prototype.spawnBall = function () {
+        var x = this.player.position.x + this.game.width;
 
         if (x < this.game.world.width - this.game.width) {
             var ball = this.balls.create(x, this.game.height - 65, 'ball');
@@ -101,9 +148,9 @@
 
     FFP.Game.prototype.tryToSpawnGhoul = function () {
         var currentTime = this.game.time.time;
-        if (currentTime - this.lastSpawnTime > this.timeUntilSpawn) {
-            this.timeUntilSpawn = Math.random() * 1000 + 1000;
-            this.lastSpawnTime = currentTime;
+        if (currentTime - this.lastSpawnTimeGhoul > this.timeUntilSpawnGhoul) {
+            this.timeUntilSpawnGhoul = Math.random() * 1000 + 1000;
+            this.lastSpawnTimeGhoul = currentTime;
 
             var maybe = Math.floor(Math.random() * 100);
             if (maybe < 60) {
@@ -186,6 +233,9 @@
         // On vérifie la collison entre le joueur et les ghouls
         this.game.physics.arcade.collide(this.player, this.ghouls, this.hitAGhoul, null, this);
 
+        // On vérifie la collison entre le joueur et les platforms
+        this.game.physics.arcade.collide(this.player, this.platforms, this.playerOnAPlatform, null, this);
+
         // On vérifie le ramassage des balls par le joueur
         this.game.physics.arcade.overlap(this.player, this.balls, this.playerCollectBall, null, this);
         // On vérifie le ramassage des balls par le dracula ! hahaha
@@ -201,11 +251,14 @@
         this.game.world.wrap(this.player, -(this.game.width - 125), false, true, false);
 
         this.tryToSpawnGhoul();
+        this.tryToSpawnPlatform();
         this.checkGhoulsToClean();
+        this.checkPlatformsToClean();
     };
 
     FFP.Game.prototype.render = function () {
-        this.game.debug.text(this.game.time.fps || "--", 20, 70, "#00ff00", "40px Courier");
+        // this.game.debug.text(this.game.time.fps || "--", 20, 70, "#00ff00", "40px Courier");
+        // this.game.debug.text(this.game.input.mousePointer.worldX || "--", 20, 70, "#00ff00", "40px Courier");
     };
 
     global.FFP = FFP;
