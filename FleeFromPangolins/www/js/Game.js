@@ -104,7 +104,13 @@
         if (currentTime - this.lastSpawnTime > this.timeUntilSpawn) {
             this.timeUntilSpawn = Math.random() * 1000 + 1000;
             this.lastSpawnTime = currentTime;
-            this.spawnGhoul();
+
+            var maybe = Math.floor(Math.random() * 100);
+            if (maybe < 60) {
+                this.spawnGhoul();
+            } else {
+                this.spawnBall();
+            }
         }
     };
 
