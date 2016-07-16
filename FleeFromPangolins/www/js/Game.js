@@ -77,6 +77,14 @@
         this.mainTheme.play();
     };
 
+    FFP.Game.prototype.spawnBall = function () {
+        var x = this.player.position.x + this.game.width + 50;
+
+        if (x < this.game.world.width - this.game.width) {
+            var ball = this.balls.create(x, this.game.height - 65, 'ball');
+        }
+    };
+
     FFP.Game.prototype.tryToSpawnGhoul = function () {
         var currentTime = this.game.time.time;
         if (currentTime - this.lastSpawnTime > this.timeUntilSpawn) {
