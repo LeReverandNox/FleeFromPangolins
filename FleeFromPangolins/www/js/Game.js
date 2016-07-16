@@ -100,6 +100,16 @@
         }
     };
 
+    FFP.Game.prototype.checkPlatformsToClean = function () {
+        if (this.platforms.countLiving()) {
+            this.platforms.forEachExists(function (platform) {
+                if (platform.worldPosition.x < -64) {
+                    this.platforms.remove(platform);
+                }
+            }, this);
+        }
+    };
+
     FFP.Game.prototype.tryToSpawnPlatform = function () {
         var currentTime = this.game.time.time;
         if (currentTime - this.lastSpawnTimePlatform > this.timeUntilSpawnPlatorm) {
