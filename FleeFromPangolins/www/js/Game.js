@@ -64,6 +64,17 @@
         this.mainTheme.play();
     };
 
+    FFP.Game.prototype.spawnGhoul = function () {
+        var x = this.player.position.x + this.game.width;
+
+        if (x < this.game.world.width - this.game.width) {
+            var ghoul = this.ghouls.create(x, this.game.height - 87, 'ghoul');
+            ghoul.animations.add("hover");
+            ghoul.animations.play("hover", 6, true);
+
+            ghoul.body.immovable = true;
+        }
+    };
     FFP.Game.prototype.jumpUp = function () {
         if (this.player.body.touching.down) {
             this.player.body.velocity.y -= 450;
