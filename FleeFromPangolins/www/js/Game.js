@@ -85,6 +85,8 @@
 
         this.mainTheme = this.game.add.audio('main-theme');
         this.mainTheme.play();
+
+        this.jumpCount = 0;
     };
 
     FFP.Game.prototype.loadBestScore = function () {
@@ -207,11 +209,17 @@
     };
 
     FFP.Game.prototype.jumpUp = function () {
-        if (this.player.body.touching.down) {
-            this.player.body.velocity.y -= 450;
-            this.player.body.gravity.y += 50;
-            this.player.body.velocity.x += 50;
+        if (this.jumpCount < 2) {
             this.player.animations.play("jump", 1);
+            if (this.jumpCount === 0) {
+                this.player.body.velocity.y -= 450;
+                this.player.body.gravity.y += 50;
+                this.player.body.velocity.x += 50;
+            } else if (this.jumpCount === 1) {
+                this.player.body.velocity.y = 0;
+                this.player.body.velocity.y -= 400;
+            }
+            this.jumpCount += 1;
         }
     };
 
@@ -224,6 +232,8 @@
 
             // On fait se deplacer le joueur automatiquement
             this.player.body.velocity.x = 160;
+
+            this.jumpCount = 0;
         }
     };
 
