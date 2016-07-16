@@ -69,6 +69,9 @@
         this.balls = this.game.add.group();
         this.balls.enableBody = true;
 
+        // On créer un groupe physic pour les platfoms
+        this.platforms = this.game.add.physicsGroup();
+
         this.gameOver = false;
         this.timeUntilSpawn = Math.random() * 1000 + 1000;
         this.lastSpawnTime = this.game.time.time;
