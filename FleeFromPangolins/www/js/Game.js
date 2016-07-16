@@ -86,6 +86,20 @@
         var x = this.player.position.x + this.game.width + 50;
 
         if (x < this.game.world.width - this.game.width) {
+    FFP.Game.prototype.tryToSpawnPlatform = function () {
+        var currentTime = this.game.time.time;
+        if (currentTime - this.lastSpawnTimePlatform > this.timeUntilSpawnPlatorm) {
+            this.timeUntilSpawnPlatorm = Math.random() * 1000 + 1000;
+            this.lastSpawnTimePlatform = currentTime;
+
+            this.spawnPlatform();
+        }
+    };
+
+    FFP.Game.prototype.spawnBall = function () {
+        var x = this.player.position.x + this.game.width;
+
+        if (x < this.game.world.width - this.game.width) {
             var ball = this.balls.create(x, this.game.height - 65, 'ball');
         }
     };
@@ -206,6 +220,7 @@
         this.game.world.wrap(this.player, -(this.game.width - 125), false, true, false);
 
         this.tryToSpawnGhoul();
+        this.tryToSpawnPlatform();
         this.checkGhoulsToClean();
     };
 
