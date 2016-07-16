@@ -17,7 +17,7 @@
 
     FFP.Game.prototype.create = function () {
         // On définit les limites du monde
-        this.game.world.setBounds(0, 0, 1500, this.game.height);
+        this.game.world.setBounds(0, 0, 5000, this.game.height);
         // On créer le sol avec l'image ground et l'herbe avec l'image grass
         this.ground = this.add.tileSprite(0, this.game.height - 32, this.game.world.width, 32, "ground");
         this.grass = this.add.tileSprite(0, this.game.height - 44, this.game.world.width, 12, 'grass');
