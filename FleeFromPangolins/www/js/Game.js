@@ -66,8 +66,20 @@
         this.ghouls.enableBody = true;
 
         this.gameOver = false;
+        this.timeUntilSpawn = Math.random() * 1000 + 1000;
+        this.lastSpawnTime = this.game.time.time;
+
         this.mainTheme = this.game.add.audio('main-theme');
         this.mainTheme.play();
+    };
+
+    FFP.Game.prototype.tryToSpawnGhoul = function () {
+        var currentTime = this.game.time.time;
+        if (currentTime - this.lastSpawnTime > this.timeUntilSpawn) {
+            this.timeUntilSpawn = Math.random() * 1000 + 1000;
+            this.lastSpawnTime = currentTime;
+            this.spawnGhoul();
+        }
     };
 
     FFP.Game.prototype.spawnGhoul = function () {
@@ -134,6 +146,8 @@
         this.game.camera.focusOnXY(this.player.x + 125, this.player.y);
 
         this.game.world.wrap(this.player, -(this.game.width - 125), false, true, false);
+
+        this.tryToSpawnGhoul();
     };
 
     FFP.Game.prototype.render = function () {
