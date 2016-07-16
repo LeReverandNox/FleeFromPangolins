@@ -23,6 +23,7 @@
         this.load.image('ground', 'assets/images/ground.png');
         this.load.image('grass', 'assets/images/grass.png');
         this.load.image('ball', 'assets/images/ball.png');
+        this.load.image('platform', 'assets/images/platform.png');
         this.load.audio('main-theme', 'assets/sounds/main-theme.mp3');
     };
 
