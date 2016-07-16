@@ -94,13 +94,14 @@
         // Menu de pause
         this.pauseButton = this.game.add.button(this.game.width - 55, 5, 'pause', this.pause, this);
         this.pauseButton.fixedToCamera = true;
-        // this.game.input.onDown.add(this.unpause, this);
     };
 
     FFP.Game.prototype.pause = function () {
-        this.pauseText = this.game.add.text(this.game.camera.x, 150, "PAUSE", {font: '50px Arial', fill: '#ffffff'});
-        this.pauseText.anchor.setTo(-1, 0.5);
-        this.game.paused = true;
+        if (!this.gameOver) {
+            this.pauseText = this.game.add.text(this.game.camera.x, 150, "PAUSE", {font: '50px Arial', fill: '#ffffff'});
+            this.pauseText.anchor.setTo(-1, 0.5);
+            this.game.paused = true;
+        }
     };
 
     FFP.Game.prototype.unpause = function () {
@@ -243,17 +244,19 @@
     };
 
     FFP.Game.prototype.jumpUp = function () {
-        if (this.jumpCount < 2) {
-            this.player.animations.play("jump", 1);
-            if (this.jumpCount === 0) {
-                this.player.body.velocity.y -= 450;
-                this.player.body.gravity.y += 50;
-                this.player.body.velocity.x += 50;
-            } else if (this.jumpCount === 1) {
-                this.player.body.velocity.y = 0;
-                this.player.body.velocity.y -= 400;
+        if (!this.gameOver) {
+            if (this.jumpCount < 2) {
+                this.player.animations.play("jump", 1);
+                if (this.jumpCount === 0) {
+                    this.player.body.velocity.y -= 450;
+                    this.player.body.gravity.y += 50;
+                    this.player.body.velocity.x += 50;
+                } else if (this.jumpCount === 1) {
+                    this.player.body.velocity.y = 0;
+                    this.player.body.velocity.y -= 400;
+                }
+                this.jumpCount += 1;
             }
-            this.jumpCount += 1;
         }
     };
 
@@ -272,10 +275,20 @@
     };
 
     FFP.Game.prototype.gameIsOver = function () {
-        console.log("GAME OVER");
         this.player.body.velocity.x = 0;
         this.player.animations.stop();
-        this.restart();
+
+        this.gameOverText = this.game.add.text(this.game.width / 2, 150, "GAME OVER", {font: '50px Arial', fill: '#ffffff'});
+        this.gameOverText.fixedToCamera = true;
+        this.gameOverText.anchor.setTo(0.5, 0.5);
+
+        this.backToMenuText = this.game.add.text(this.game.width / 2, 170, 'Back to Menu', {font: '24px Arial', fill: '#fff'});
+        this.backToMenuText.fixedToCamera = true;
+        this.backToMenuText.anchor.setTo(0.5, 0.1);
+        this.backToMenuText.inputEnabled = true;
+        this.backToMenuText.events.onInputUp.add(function () {
+            this.restart();
+        }, this);
     };
 
     FFP.Game.prototype.restart = function () {
