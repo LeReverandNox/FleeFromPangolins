@@ -58,7 +58,7 @@
         //  The score
         this.score = 0;
         this.scoreString = 'Score : ';
-        this.scoreText = this.game.add.text(10, 10, this.scoreString + this.score, { font: '20px Arial', fill: '#ffffff' });
+        this.scoreText = this.game.add.text(10, 10, this.scoreString + this.score, {font: '20px Arial', fill: '#ffffff'});
         this.scoreText.fixedToCamera = true;
     };
 
