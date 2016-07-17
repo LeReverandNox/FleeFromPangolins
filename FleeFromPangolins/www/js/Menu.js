@@ -15,7 +15,7 @@
         this.titleText.anchor.set(0.5);
 
         this.bestScore = this.loadBestScore();
-        this.bestScoreText = this.game.add.text(this.game.width / 2, this.game.height - 20, "Best score : " + this.bestScore, {font: "15px Arial", fill: "#fff", align: "center"});
+        this.bestScoreText = this.game.add.text(this.game.width / 2, this.game.height - 20, "Best score : " + this.bestScore, {font: "25px Arial", fill: "#fff", align: "center"});
         this.bestScoreText.anchor.set(0.5);
 
         this.startGameText = this.game.add.text(this.game.width / 2, this.game.height / 2, "Touch here to start !", {font: "30px Arial", fill: "#fff", align: "center"});
