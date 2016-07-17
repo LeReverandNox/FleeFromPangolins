@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.fleefrompangolins" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Flee From Pangolins</name>
+    <name>Super Flee From Pangolinos IV</name>
     <description>
-        Un infinite-runner plein de pangolins et de capybaras développé avec Phaser
+        Un infinite-runner ressemblant à un boot-leg de Super Castlevania IV développé avec Phaser, plein de ghouls et de balls.
     </description>
     <author email="rodolphe.laidet@epitech.eu" href="http://rodolphe-laidet.com">
         laidet_r
