@@ -293,7 +293,7 @@
 
     FFP.Game.prototype.restart = function () {
         this.mainTheme.stop();
-        this.game.state.start(this.game.state.current);
+        this.game.state.start("Menu");
     };
 
     FFP.Game.prototype.update = function () {
