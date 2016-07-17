@@ -9,6 +9,7 @@
 
     FFP.game.state.add("Boot", FFP.Boot);
     FFP.game.state.add("Preload", FFP.Preload);
+    FFP.game.state.add("Menu", FFP.Menu);
     FFP.game.state.add("Game", FFP.Game);
     FFP.game.state.start("Boot");
 
