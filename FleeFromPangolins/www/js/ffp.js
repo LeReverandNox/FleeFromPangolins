@@ -5,7 +5,7 @@
     "use strict";
     var FFP = global.FFP || {};
 
-    FFP.game = new Phaser.Game(500, 281, Phaser.CANVAS, "gameHolder");
+    FFP.game = new Phaser.Game(500, 282, Phaser.CANVAS, "gameHolder");
 
     FFP.game.state.add("Boot", FFP.Boot);
     FFP.game.state.add("Preload", FFP.Preload);
