@@ -94,8 +94,8 @@
 
     FFP.Game.prototype.pause = function () {
         if (!this.gameOver) {
-            this.pauseText = this.game.add.text(this.game.camera.x, 150, "PAUSE", {font: "50px Arial", fill: "#ffffff"});
-            this.pauseText.anchor.setTo(-1, 0.5);
+            this.pauseText = this.game.add.text(this.player.position.x + 50, 150, "PAUSE", {font: "50px Arial", fill: "#ffffff"});
+            this.pauseText.anchor.setTo(0, 0.5);
             this.game.paused = true;
         }
     };
