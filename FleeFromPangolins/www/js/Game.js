@@ -23,10 +23,6 @@
         this.grass = this.add.tileSprite(0, this.game.height - 44, this.game.world.width, 12, 'grass');
 
 
-        // On créer le joueur a partir du sprite de Simon et on lui ajoute son amimation de marche
-        this.player = this.game.add.sprite(0, this.game.height - 100, "simon");
-        this.player.animations.add("walk", [0, 1, 2, 3, 4, 5]);
-        this.player.animations.add("jump", [6]);
 
         // On créer Dracula et son animation, et on le fixe par rapport a la camera
         this.dracula = this.game.add.sprite(-50, this.game.height - 155, "dracula");
@@ -36,6 +32,11 @@
 
         // L'herbe est au premier plan
         this.game.world.bringToTop(this.grass);
+
+        // On créer le joueur a partir du sprite de Simon et on lui ajoute son amimation de marche
+        this.player = this.game.add.sprite(0, this.game.height - 100, "simon");
+        this.player.animations.add("walk", [0, 1, 2, 3, 4, 5]);
+        this.player.animations.add("jump", [6]);
 
         // On active le moteur physique pour le joueur et le sol
         this.game.physics.arcade.enable(this.player);
