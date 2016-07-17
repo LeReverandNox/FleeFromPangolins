@@ -53,7 +53,7 @@
 
         // On capture les inputs clavier des touches fléchées et les tap
         this.cursors = this.game.input.keyboard.createCursorKeys();
-        this.game.input.onTap.add(this.jumpUp, this);
+        this.game.input.onTap.add(this.tapOnScreen, this);
 
         //  The score
         this.score = 0;
