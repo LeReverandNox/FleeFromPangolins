@@ -13,9 +13,9 @@
     FFP.Game.prototype.create = function () {
         // On définit les limites du monde
         this.game.world.setBounds(0, 0, 5000, this.game.height);
-        // On créer le sol avec l'image ground et l'herbe avec l'image grass
+        // On créer le sol avec l"image ground et l"herbe avec l"image grass
         this.ground = this.add.tileSprite(0, this.game.height - 32, this.game.world.width, 32, "ground");
-        this.grass = this.add.tileSprite(0, this.game.height - 44, this.game.world.width, 12, 'grass');
+        this.grass = this.add.tileSprite(0, this.game.height - 44, this.game.world.width, 12, "grass");
 
 
 
@@ -25,7 +25,7 @@
         this.dracula.animations.add("hover");
         this.dracula.fixedToCamera = true;
 
-        // L'herbe est au premier plan
+        // L"herbe est au premier plan
         this.game.world.bringToTop(this.grass);
 
         // On créer le joueur a partir du sprite de Simon et on lui ajoute son amimation de marche
@@ -45,7 +45,7 @@
         this.ground.body.allowGravity = false;
 
         // On fait marcher le sprite
-        this.dracula.animations.play('hover', 3, true);
+        this.dracula.animations.play("hover", 3, true);
 
         // On capture les inputs clavier des touches fléchées et les tap
         this.cursors = this.game.input.keyboard.createCursorKeys();
@@ -53,13 +53,13 @@
 
         //  The score
         this.score = 0;
-        this.scoreString = 'Score : ';
-        this.scoreText = this.game.add.text(10, 35, this.scoreString + this.score, {font: '20px Arial', fill: '#ffffff'});
+        this.scoreString = "Score : ";
+        this.scoreText = this.game.add.text(10, 35, this.scoreString + this.score, {font: "20px Arial", fill: "#ffffff"});
         this.scoreText.fixedToCamera = true;
 
         this.bestScore = this.loadBestScore();
-        this.bestScoreString = 'Best Score : ';
-        this.bestScoreText = this.game.add.text(10, 10, this.bestScoreString + this.bestScore, {font: '20px Arial', fill: '#ffffff'});
+        this.bestScoreString = "Best Score : ";
+        this.bestScoreText = this.game.add.text(10, 10, this.bestScoreString + this.bestScore, {font: "20px Arial", fill: "#ffffff"});
         this.bestScoreText.fixedToCamera = true;
 
         // On créer un groupe pour les ghouls
@@ -79,22 +79,22 @@
         this.timeUntilSpawnPlatorm = Math.random() * 1000 + 1000;
         this.lastSpawnTimePlatform = this.game.time.time;
 
-        this.pickupSound = this.game.add.audio('pickup');
+        this.pickupSound = this.game.add.audio("pickup");
 
-        this.mainTheme = this.game.add.audio('main-theme');
+        this.mainTheme = this.game.add.audio("main-theme");
         this.mainTheme.play();
 
         // Compteur pour le double jump
         this.jumpCount = 0;
 
         // Menu de pause
-        this.pauseButton = this.game.add.button(this.game.width - 55, 5, 'pause', this.pause, this);
+        this.pauseButton = this.game.add.button(this.game.width - 55, 5, "pause", this.pause, this);
         this.pauseButton.fixedToCamera = true;
     };
 
     FFP.Game.prototype.pause = function () {
         if (!this.gameOver) {
-            this.pauseText = this.game.add.text(this.game.camera.x, 150, "PAUSE", {font: '50px Arial', fill: '#ffffff'});
+            this.pauseText = this.game.add.text(this.game.camera.x, 150, "PAUSE", {font: "50px Arial", fill: "#ffffff"});
             this.pauseText.anchor.setTo(-1, 0.5);
             this.game.paused = true;
         }
@@ -138,7 +138,7 @@
             } else {
                 y = 110;
             }
-            var platform = this.platforms.create(x, this.game.height - y, 'platform');
+            var platform = this.platforms.create(x, this.game.height - y, "platform");
             platform.body.allowGravity = false;
             platform.body.immovable = true;
             this.lastSpawnedPlatform = platform;
@@ -173,7 +173,7 @@
         var x = this.player.position.x + this.game.width;
 
         if (x < this.game.world.width - this.game.width) {
-            var ball = this.balls.create(x, this.game.height - 65, 'ball');
+            this.balls.create(x, this.game.height - 65, "ball");
         }
     };
 
@@ -217,7 +217,7 @@
         var x = this.player.position.x + this.game.width;
 
         if (x < this.game.world.width - this.game.width) {
-            var ghoul = this.ghouls.create(x, this.game.height - 87, 'ghoul');
+            var ghoul = this.ghouls.create(x, this.game.height - 87, "ghoul");
             ghoul.animations.add("hover");
             ghoul.animations.play("hover", 6, true);
 
@@ -257,10 +257,10 @@
     };
 
     FFP.Game.prototype.playerHitTheGround = function () {
-        // Si on touche le sol (donc quand on retombe), on cancel l'animation de saut et on relance l'animation de walk. Appel ignoré sur l'action est déjà en cour
+        // Si on touche le sol (donc quand on retombe), on cancel l"animation de saut et on relance l"animation de walk. Appel ignoré sur l"action est déjà en cour
         if (this.player.body.touching.down) {
             this.player.animations.stop("jump");
-            this.player.animations.play('walk', 6, true);
+            this.player.animations.play("walk", 6, true);
             this.player.body.gravity.y = 1000;
 
             // On fait se deplacer le joueur automatiquement
@@ -274,11 +274,11 @@
         this.player.body.velocity.x = 0;
         this.player.animations.stop();
 
-        this.gameOverText = this.game.add.text(this.game.width / 2, 150, "GAME OVER", {font: '50px Arial', fill: '#ffffff'});
+        this.gameOverText = this.game.add.text(this.game.width / 2, 150, "GAME OVER", {font: "50px Arial", fill: "#ffffff"});
         this.gameOverText.fixedToCamera = true;
         this.gameOverText.anchor.setTo(0.5, 0.5);
 
-        this.backToMenuText = this.game.add.text(this.game.width / 2, 170, 'Back to Menu', {font: '24px Arial', fill: '#fff'});
+        this.backToMenuText = this.game.add.text(this.game.width / 2, 170, "Back to Menu", {font: "24px Arial", fill: "#fff"});
         this.backToMenuText.fixedToCamera = true;
         this.backToMenuText.anchor.setTo(0.5, 0.1);
         this.backToMenuText.inputEnabled = true;
