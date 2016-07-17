@@ -10,11 +10,6 @@
         return;
     };
 
-    FFP.Game.prototype.preload = function () {
-        // Pour le débug, mise a jour des infos de timing (fps toussa toussa)
-        this.game.time.advancedTiming = true;
-    };
-
     FFP.Game.prototype.create = function () {
         // On définit les limites du monde
         this.game.world.setBounds(0, 0, 5000, this.game.height);
