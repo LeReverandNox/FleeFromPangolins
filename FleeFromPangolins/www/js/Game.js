@@ -333,10 +333,6 @@
         this.checkPlatformsToClean();
     };
 
-    FFP.Game.prototype.render = function () {
-        this.game.debug.text(this.game.time.fps || "--", 20, 70, "#00ff00", "40px Courier");
-    };
-
     global.FFP = FFP;
 
 }(window));
